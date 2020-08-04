@@ -23,7 +23,21 @@ class User extends Seeder
             'password' => bcrypt('Supervisor123'),
         ]);
 
+        $admin = AppUser::create([
+            'name' => 'Admin',
+            'email' => 'admin@sam.com',
+            'password' => bcrypt('password'),
+        ]);
+
+        $user = AppUser::create([
+            'name' => 'User',
+            'email' => 'user@sam.com',
+            'password' => bcrypt('password'),
+        ]);
+
         $supervisor->roles()->attach(Role::whereName('Supervisor')->first());
+        $admin->roles()->attach(Role::whereName('Admin')->first());
+        $user->roles()->attach(Role::whereName('User')->first());
 
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
     }

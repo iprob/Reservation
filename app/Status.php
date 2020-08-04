@@ -9,6 +9,6 @@ class Status extends Model
     
     public function reservation()
     {
-        return $this->belongsTo(Reservation::class);
+        return $this->hasONe(Reservation::class);
     }
 }

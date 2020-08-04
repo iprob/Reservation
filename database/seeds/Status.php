@@ -17,7 +17,6 @@ class Status extends Seeder
             'Reserve',
             'Complete',
             'Cancel',
-            
         ];
 
         DB::statement('SET FOREIGN_KEY_CHECKS=0;');

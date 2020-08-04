@@ -1,23 +1,28 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
+     
+    @foreach ($user->roles as $role)
+            
+        @if ($role->name == "Supervisor")
 
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
+            @include('supervisor.index')
 
-                    {{ __('You are logged in!') }}
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+        @endif
+
+        @if ($role->name == "Admin")
+
+            @include('admin.index')
+            
+        @endif
+
+        @if ($role->name == "user")
+
+            @include('user.index')
+
+        @endif
+
+
+    @endforeach
+
 @endsection

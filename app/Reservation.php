@@ -3,11 +3,16 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class Reservation extends Model
 {
     protected $fillable = [
         'name', 'date', 'time', 'note', 'phone'
+    ];
+
+    protected $attributes = [
+        'status_id' => 1,
     ];
 
     protected $casts = [
@@ -22,11 +27,23 @@ class Reservation extends Model
 
     public function status()
     {
-        return $this->hasOne(Status::class);
+        return $this->belongsTo(Status::class);
     }
 
     public function meals()
     {
         return $this->belongsToMany(Meal::class)->withTimestamps();
     }
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($query) {
+            $query->user_id = auth()->id();
+        });
+    }
+
+
+
 }

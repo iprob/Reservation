@@ -19,9 +19,20 @@ class Reservation extends Seeder
                 'name' => 'Meet',
                 'date' => Carbon::now()->format('Y-m-d'),
                 'time' => Carbon::now()->format('h:i:s'),
-                'user_id' => 1,
+                'user_id' => 3,
                 'status_id' => 2,
                 'note' => 'Meeting with Boss',
+                'phone' => '+60123456789',
+
+            ],
+
+            [
+                'name' => 'Date',
+                'date' => Carbon::now()->format('Y-m-d'),
+                'time' => Carbon::now()->format('h:i:s'),
+                'user_id' => 3,
+                'status_id' => 1,
+                'note' => 'Date with girlfriend',
                 'phone' => '+60123456789',
 
             ],

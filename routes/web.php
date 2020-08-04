@@ -19,4 +19,11 @@ Route::get('/', function () {
 
 Auth::routes();
 
+#Admin
+Route::resource('admin', 'AdminController');
+#supervisor
+Route::resource('supervisor', 'SupervisorController');
+#user
+Route::resource('/reservation', 'UserController');
+
 Route::get('/home', 'HomeController@index')->name('home');
