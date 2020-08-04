@@ -32,7 +32,7 @@ class Reservation extends Model
 
     public function meals()
     {
-        return $this->belongsToMany(Meal::class)->withTimestamps();
+        return $this->belongsToMany(Meal::class);
     }
 
     protected static function boot()

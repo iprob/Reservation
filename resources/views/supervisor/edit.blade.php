@@ -2,15 +2,11 @@
 
 @section('content')
 
-<form method="POST" action="{{ $reservation->exists ? route('reservation.update', $reservation) : route('reservation.store') }}" class="mb-4">
+<form method="POST" action="{{route('supervisor.update', $supervisor)}}" class="mb-4">
 
     @csrf
 
-    @if($reservation->exists)
-
-    @method('PUT')
-
-    @endif
+    @method('PATCH')
 
     <div class="form-group row d-flex justify-content-center">
 
@@ -18,7 +14,7 @@
 
         <div class="col-md-6 ">
 
-            <input name="name" type="text" class="form-control @error('name') is-invalid @enderror" id="name" value="{{ old('name', $reservation->name) }}">
+            <input name="name" type="text" class="form-control @error('name') is-invalid @enderror" id="name" value="{{ old('name', $supervisor->name) }}" readonly>
 
             @error('name')
 
@@ -36,11 +32,29 @@
 
     <div class="form-group row d-flex justify-content-center">
 
+        <label for="status_id" class="col-form-label ">Status</label>
+
+        <div class="col-md-6 ">
+
+            <select class="form-control" name="status_id" id="status">
+
+                @foreach ($statuses as $status)
+                    <option value={{$status->id}}>{{$status->name}}</option>
+                @endforeach
+
+            </select>
+
+        </div>
+
+    </div>
+
+    <div class="form-group row d-flex justify-content-center">
+
         <label for="time" class="col-form-label ">Time</label>
 
         <div class="col-md-6 ">
 
-            <input name="time" type="time" class="form-control @error('time') is-invalid @enderror" id="time" value="{{ old('time', $reservation->time) }}">
+            <input name="time" type="time" class="form-control @error('time') is-invalid @enderror" id="time" value="{{ old('time', $supervisor->time) }}" readonly>
 
             @error('time')
 
@@ -62,7 +76,7 @@
 
         <div class="col-md-6 ">
 
-            <input name="date" type="date" class="form-control @error('date') is-invalid @enderror" id="date" value="{{ old('date', $reservation->date) }}">
+            <input name="date" type="date" class="form-control @error('date') is-invalid @enderror" id="date" value="{{ old('date', $supervisor->date) }}" readonly>
 
             @error('date')
 
@@ -84,7 +98,7 @@
 
         <div class="col-md-6 ">
 
-            <input name="phone" type="text" class="form-control" id="phone" value="{{ old('phone', $reservation->phone) }}">
+            <input name="phone" type="text" class="form-control" id="phone" value="{{ old('phone', $supervisor->phone) }}" readonly>
 
         </div>
 
@@ -96,28 +110,9 @@
 
         <div class="col-md-6 ">
 
-            <input name="note" type="text" class="form-control" id="note" value="{{ old('note', $reservation->note) }}">
+            <input name="note" type="text" class="form-control" id="note" value="{{ old('note', $supervisor->note) }}">
 
         </div>
-
-    </div>
-
-
-    <div class=" d-flex justify-content-center">
-
-        <label for="meal" class="col-form-label ">Meals</label>
-
-        @foreach ($meals as $meal)
-
-        <div class="form-check">
-
-            <input name="meal" type="checkbox"  id="meal" value="{{ $meal->id }}">
-
-            <label>{{$meal->name}}</label>
-
-        </div>
-                
-        @endforeach
 
     </div>
 

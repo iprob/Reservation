@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Reservation;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -24,7 +25,7 @@ class HomeController extends Controller
     public function index()
     {
         $user = auth()->user();
-        
-        return view('home', compact('user'));
+        $reservations = Reservation::paginate(10);
+        return view('home', compact('user','reservations'));
     }
 }

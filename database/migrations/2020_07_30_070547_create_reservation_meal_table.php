@@ -13,7 +13,7 @@ class CreateReservationMealTable extends Migration
      */
     public function up()
     {
-        Schema::create('reservation_meal', function (Blueprint $table) {
+        Schema::create('reservation_meals', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('reservation_id');
             $table->unsignedBigInteger('meal_id');

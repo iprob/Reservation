@@ -12,7 +12,9 @@
                     <th scope="col">Date</th>
                     <th scope="col">Status</th>
                     <th scope="col">Remark</th>
+                    {{-- <th scope="col">Meal</th> --}}
                     <th scope="col">Action</th>
+
                 </tr>
             </thead>
 
@@ -24,13 +26,23 @@
                     <td>{{$reservation->date}}</td>
                     <td>{{$reservation->status->name}}</td>
                     <td>{{$reservation->note}}</td>
-                    <td><a class="btn btn-sm btn-primary" href="reservation/{{$reservation->id}}/edit">Edit</a></td>
+                    {{-- <td>{{implode(', ', $reservation->meals()->get()->pluck('name')->toArray())}}</td> --}}
+                    <td>
+                        <a class="btn btn-sm btn-primary" href="reservation/{{$reservation->id}}/edit">Edit</a> 
+                        @if (!$reservation->status->name = 'complete')
+                            <a class="btn btn-sm btn-danger" href="reservation/{{$reservation->id}}">Delete</a> 
+                        @endif
+                        
+                    </td>
                 </tr>
             </tbody>
 
             @endforeach
 
+            
+
         </table>
+    
 
     </div>
 </div>
